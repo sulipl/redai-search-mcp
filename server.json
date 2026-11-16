@@ -1,0 +1,35 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "pl.redai/search",
+  "title": "redAi Search: Polish companies and .pl websites",
+  "description": "Search Polish .pl websites and companies: contacts, offer, NIP checked in MF White List.",
+  "version": "0.3.1",
+  "websiteUrl": "https://redai.pl/search",
+  "repository": {
+    "url": "https://github.com/sulipl/redai-search-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://redai.pl/assets/img/redai-mcp-ikona-256.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "256x256"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://search.redai.pl/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: Bearer rk_... API key from redai.pl/search. Without a key: 100 queries/day per IP.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
