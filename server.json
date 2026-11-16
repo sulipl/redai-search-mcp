@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "pl.redai/search",
   "title": "redAi Search: Polish companies and .pl websites",
-  "description": "Search Polish .pl websites and companies: contacts, offer, NIP checked in MF White List.",
-  "version": "0.3.1",
+  "description": "Paid API: search Polish .pl websites and companies, contacts, offer, NIP from MF White List.",
+  "version": "0.5.0",
   "websiteUrl": "https://redai.pl/search",
   "repository": {
     "url": "https://github.com/sulipl/redai-search-mcp",
@@ -25,8 +25,8 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Optional: Bearer rk_... API key from redai.pl/search. Without a key: 100 queries/day per IP.",
-          "isRequired": false,
+          "description": "Required: Bearer rk_... API key from https://redai.pl/search. Paid: 0.1 USD per 1000 queries, first 1000 queries a day per key included.",
+          "isRequired": true,
           "isSecret": true
         }
       ]
