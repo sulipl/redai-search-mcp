@@ -76,6 +76,32 @@ curl -s https://search.redai.pl/mcp -H 'Content-Type: application/json' \
 
 REST API with the same data: `GET https://search.redai.pl/v1/search?q=mechanik%20krakow` (same key header).
 
+## Open WebUI, Serper and Tavily compatible endpoints
+
+Same index, same key, same pricing (1 call = 1 query).
+
+**Open WebUI** (Admin Panel, Settings, Web Search):
+
+- Web Search Engine `external`, External Web Search URL `https://search.redai.pl/openwebui/search`,
+  External Web Search API Key `rk_...`. Request `{"query","count"}`, response `[{"link","title","snippet"}]`.
+- or the built-in `tavily` engine with the environment variable `TAVILY_API_BASE_URL=https://search.redai.pl/tavily`
+  and your `rk_...` key as the Tavily API key.
+
+**Code written for Serper or Tavily:** change the base URL and the key.
+
+```bash
+# was: https://google.serper.dev/search
+curl -s https://search.redai.pl/serper/search -H "X-API-KEY: $REDAI_KEY" \
+  -H 'Content-Type: application/json' -d '{"q":"hurtownia budowlana poznan","num":10}'
+
+# was: https://api.tavily.com/search
+curl -s https://search.redai.pl/tavily/search -H "Authorization: Bearer $REDAI_KEY" \
+  -H 'Content-Type: application/json' -d '{"query":"mechanik krakow","max_results":5}'
+```
+
+Serper fields: `organic[].title, link, snippet, position, sitelinks`. Tavily fields: `results[].title, url, content, score`
+(`include_domains` and `exclude_domains` work; `/tavily/extract` is not available, `answer` is always `null`).
+
 ## Po polsku
 
 **Polska wyszukiwarka internetowa dla AI.** Podepnijcie ją pod Claude (claude.ai, Claude Desktop,
@@ -87,6 +113,8 @@ oraz podstrony, na których jest odpowiedź.
 Adres: `https://search.redai.pl/mcp`. Wywołania narzędzi wymagają klucza API (`Authorization: Bearer rk_...`):
 0,10 USD za 1000 zapytań z przedpłaconego salda, pierwsze 1000 zapytań dziennie na klucz w cenie.
 W claude.ai: Ustawienia, Konektory, Dodaj własny konektor, adres `https://search.redai.pl/mcp?key=rk_...`.
+Open WebUI: silnik `external` z adresem `https://search.redai.pl/openwebui/search` albo silnik `tavily`
+z `TAVILY_API_BASE_URL=https://search.redai.pl/tavily`. Kod pisany pod Serper i Tavily działa po zmianie adresu i klucza.
 Klucz odbierzecie na https://redai.pl/search#rozmowa
 Więcej: https://redai.pl/search
 
