@@ -1,11 +1,20 @@
-# redAi Search MCP: Polish companies and .pl websites
+# redAi Search: Polish web search engine for AI (MCP server for Claude)
 
 <img src="icon.png" width="64" align="right" alt="redAi">
 
-Paid remote MCP server that searches Polish `.pl` websites and companies. Ask in Polish, like in
-Google ("mechanik krakow", "biuro rachunkowe Gdańsk", "jak założyć działalność"): there is no
-"companies only" or "pages only" switch, the ranking itself mixes companies and content pages
-by relevance. Each result has a description, offer, contact data and the subpages where the answer is.
+**Polish search engine for AI agents** (polska wyszukiwarka internetowa dla AI). Connect it to
+Claude (claude.ai, Claude Desktop, Claude Code), Cursor or VS Code as a remote MCP server and your
+assistant gets web search over Polish `.pl` websites and Polish companies, in Polish.
+
+Ask like in Google ("mechanik krakow", "biuro rachunkowe Gdańsk", "jak założyć działalność"):
+there is no "companies only" or "pages only" switch, the ranking itself mixes companies and content
+pages by relevance. Each result has a description, offer, contact data and the subpages where the
+answer is. Paid API, key required.
+
+**Use it when your agent needs:**
+- web search in Polish and results from Polish websites (`.pl`),
+- Polish company search: local services in a Polish city, contacts, offer, NIP (tax ID) checked in the MF White List,
+- the exact subpage with the answer, fetched live with `extended=true`.
 
 - **Endpoint:** `https://search.redai.pl/mcp` (Streamable HTTP, JSON-RPC 2.0, stateless)
 - **Registry:** `pl.redai/search` in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=pl.redai)
@@ -69,11 +78,15 @@ REST API with the same data: `GET https://search.redai.pl/v1/search?q=mechanik%2
 
 ## Po polsku
 
-Płatny zdalny serwer MCP z wyszukiwarką polskich stron `.pl` i firm. Asystent AI (Claude, Cursor, VS Code)
-pyta jak w Google, bez wyboru „tylko firmy” czy „tylko strony”, i dostaje firmy z kontaktem, ofertą
-i NIP-em sprawdzonym w Białej liście MF oraz podstrony, na których jest odpowiedź.
+**Polska wyszukiwarka internetowa dla AI.** Podepnijcie ją pod Claude (claude.ai, Claude Desktop,
+Claude Code), Cursor albo VS Code jako zdalny serwer MCP, a asystent dostanie wyszukiwanie po
+polskich stronach `.pl` i polskich firmach. Pyta jak w Google, bez wyboru „tylko firmy” czy
+„tylko strony”, i dostaje firmy z kontaktem, ofertą i NIP-em sprawdzonym w Białej liście MF
+oraz podstrony, na których jest odpowiedź.
+
 Adres: `https://search.redai.pl/mcp`. Wywołania narzędzi wymagają klucza API (`Authorization: Bearer rk_...`):
 0,10 USD za 1000 zapytań z przedpłaconego salda, pierwsze 1000 zapytań dziennie na klucz w cenie.
+W claude.ai: Ustawienia, Konektory, Dodaj własny konektor, adres `https://search.redai.pl/mcp?key=rk_...`.
 Klucz odbierzecie na https://redai.pl/search#rozmowa
 Więcej: https://redai.pl/search
 
